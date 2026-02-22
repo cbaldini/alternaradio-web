@@ -1677,3 +1677,25 @@ audio {
 	margin: 0 !important;
 	padding: 0 !important;
 }
+
+/* Enlace de descarga de app - solo visible en móvil */
+.download-app-link {
+	display: none;
+}
+
+@media screen and (max-width: 768px) {
+	.download-app-link {
+		display: block;
+		background-color: #4CAF50;
+		color: white !important;
+		font-weight: bold;
+		text-align: center;
+		border-radius: 5px;
+		margin: 5px 0;
+	}
+
+	.download-app-link:hover {
+		background-color: #45a049;
+	}
+}
+
