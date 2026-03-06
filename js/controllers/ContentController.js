@@ -2,7 +2,7 @@
  * Controlador de contenido dinámico (SPA Router)
  */
 
-const ContentController = {
+window.ContentController = {
   contentContainer: null,
 
   /**
@@ -27,7 +27,7 @@ const ContentController = {
     const root = parts[0];
     const slug = parts[1];
 
-    if (hash === '' || hash === 'inicio') return 'views/main.html';
+    if (hash === '' || hash === 'en_vivo') return 'views/main.html';
     if (hash === 'contacto') return 'views/contacto.html';
 
     if (root === 'ies') {
@@ -125,5 +125,4 @@ const ContentController = {
   }
 };
 
-window.ContentController = ContentController;
 

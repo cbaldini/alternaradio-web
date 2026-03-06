@@ -68,13 +68,13 @@ const AudioManager = {
 
   // Manejar navegación
   handleNavigation: function() {
-    const hash = window.location.hash.substring(1) || 'inicio';
+    const hash = window.location.hash.substring(1) || 'en_vivo';
     const mainRoute = hash.split('/')[0];
 
     console.log('AudioManager: Hash detectado:', hash, '| Ruta principal:', mainRoute);
 
-    // Si vuelve al inicio o no está en un programa, reanudar la radio
-    if (mainRoute === 'inicio' || mainRoute === '' || mainRoute === 'contacto') {
+    // Si vuelve a en_vivo o no está en un programa, reanudar la radio
+    if (mainRoute === 'en_vivo' || mainRoute === '' || mainRoute === 'contacto') {
       console.log('AudioManager: Ruta permite radio, reanudando...');
       this.resumeMainAudio();
     } else {
