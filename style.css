@@ -1275,7 +1275,7 @@ iframe {
 	height: auto;
 	display: block;
 	object-fit: contain;
-	max-height: 60vh; /* Máximo 60% de la altura del viewport */
+	max-height: 75vh; /* Aumentado de 60vh a 75vh para aprovechar más espacio */
 	transition: transform 0.3s ease;
 }
 
@@ -1541,12 +1541,12 @@ iframe {
 
 	/* Slider responsive en tablet */
 	.slider-container {
-		border-radius: 8px;
-		max-width: 95%;
+		border-radius: 0;
+		max-width: 100%;
 	}
 
 	.slider-image {
-		max-height: 55vh; /* Máximo 55% de la altura del viewport en tablets */
+		max-height: 70vh; /* Aumentado para aprovechar más espacio en tablets */
 	}
 
 
@@ -1802,13 +1802,13 @@ iframe {
 
 	/* Slider responsive en mobile */
 	.slider-container {
-		border-radius: 6px;
+		border-radius: 0;
 		max-width: 100%;
 		margin: 0;
 	}
 
 	.slider-image {
-		max-height: 50vh; /* Máximo 50% de la altura del viewport en móviles */
+		max-height: 60vh; /* Aumentado para aprovechar más espacio en móviles */
 	}
 
 
