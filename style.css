@@ -3,7 +3,7 @@
 /* Centrar todo el contenido */
 body {
 	text-align: center;
-	background-color: #000000; /* Fondo negro en lugar de gris */
+	background-color: #000000; /* Fondo negro para el body */
 	min-height: 100vh;
 	display: flex;
 	flex-direction: column;
@@ -16,6 +16,13 @@ body {
 	text-align: center;
 	background-color: #000000;
 	flex: 1; /* Ocupa todo el espacio disponible */
+	min-height: 0; /* Permite que flexbox maneje el tamaño */
+	padding: 0;
+	margin: 0;
+	overflow-y: auto;
+	display: flex;
+	flex-direction: column;
+	justify-content: center; /* Centra verticalmente el contenido */
 }
 
 /* Contenedor principal centrado */
@@ -1141,20 +1148,12 @@ iframe {
 	position: absolute;
 }
 
-#content {
-	min-height: 0; /* Permite que flexbox maneje el tamaño */
-	padding: 0;
-	margin: 0;
-	overflow-y: auto;
-	background-color: #000000;
-	flex: 1; /* Ya está definido arriba, pero aseguramos que ocupe el espacio */
-}
 
 /* Main: fondo pegado a la barra */
 .main-container {
 	padding-top: 0;
 	margin: 0;
-	padding-bottom: 20px; /* Espacio inferior para que no toque el footer */
+	width: 100%;
 }
 
 /* Footer del sitio - Reducir espacio entre content y footer */
@@ -1163,7 +1162,7 @@ iframe {
 	margin-top: 0;
 	padding-top: 20px;
 	padding-bottom: 20px;
-	background-color: #000000;
+	background-color: #272727; /* Fondo gris como el body */
 	color: #ffffff;
 	width: 100%;
 	flex-shrink: 0; /* Evita que el footer se comprima */
