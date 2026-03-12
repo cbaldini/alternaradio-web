@@ -1,5 +1,10 @@
 /* Alterna Radio - Version 2.0.0 - MVC Architecture */
 
+:root {
+	--header-h: 140px;
+	--footer-h: 0px; /* se setea por JS para mobile */
+}
+
 /* Centrar todo el contenido */
 body {
 	text-align: center;
@@ -9,7 +14,7 @@ body {
 	flex-direction: column;
 	margin: 0;
 	padding: 0;
-	padding-top: 140px; /* Espacio para el header fixed */
+	padding-top: var(--header-h); /* Espacio para el header fixed */
 }
 
 #content {
@@ -306,13 +311,6 @@ a{
 	color: white;
 }
 
-body {
-	margin: 0;
-	padding: 0;
-	padding-top: 140px;
-	background-color: #272727;
-}
-
 /* Navbar container */
 .navbar {
   overflow: visible;
@@ -459,17 +457,6 @@ body {
 	padding: 0;
 	order: 1;
 	flex-wrap: wrap;
-	align-items: center;
-	width: auto;
-}
-
-/* Wrapper para logo */
-.logo-info-wrapper {
-	display: flex;
-	flex-direction: row;
-	gap: 0;
-	padding: 0;
-	order: 1;
 	align-items: center;
 	width: auto;
 }
@@ -1366,10 +1353,10 @@ iframe {
 @media screen and (max-width: 768px) {
 
 	body {
-		padding-top: 160px; /* Más espacio en móviles por el header más grande */
-		display: flex;
-		flex-direction: column;
-		height: 100vh;
+		padding-top: var(--header-h);
+		height: auto;
+		min-height: 100vh;
+		min-height: 100dvh;
 		overflow: hidden;
 	}
 
@@ -1736,30 +1723,6 @@ iframe {
 		color: #ffffff !important;
 	}
 
-	.hamburger span {
-		width: 18px;
-		height: 2px;
-		margin: 3px 0;
-	}
-
-	.navbar {
-		order: 10;
-		width: 100%;
-		flex-basis: 100%;
-		flex-direction: column;
-		max-height: 0;
-		overflow: hidden;
-		transition: max-height 0.3s ease-out;
-		border-top: 1px solid #555;
-	}
-
-
-	.hamburger span {
-		width: 20px;
-		height: 2px;
-		margin: 4px 0;
-	}
-
 	.navbar {
 		order: 10;
 		width: 100%;
@@ -1769,7 +1732,6 @@ iframe {
 		overflow: hidden;
 		transition: max-height 0.3s ease-out;
 	}
-
 
 	.navbar a {
 		padding: 10px 12px;
@@ -1946,4 +1908,3 @@ audio {
 		background-color: #45a049;
 	}
 }
-

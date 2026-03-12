@@ -56,6 +56,9 @@ const App = {
       DateController.init();
       ContentController.init();
 
+      // Ajustar layout según alturas reales (mobile)
+      this.setupViewportLayoutVars();
+
       // Inicializar AudioManager (gestor de audio)
       if (window.AudioManager) {
         AudioManager.init();
@@ -68,6 +71,33 @@ const App = {
     } catch (error) {
       console.error('Error al inicializar la aplicación:', error);
     }
+  },
+
+  /**
+   * Ajusta variables CSS con alturas reales (header/footer) para evitar scroll en mobile.
+   */
+  setupViewportLayoutVars: function() {
+    const apply = () => {
+      try {
+        const header = document.querySelector('.top');
+        const footer = document.querySelector('.site-footer');
+
+        const headerH = header ? Math.ceil(header.getBoundingClientRect().height) : 0;
+        const footerH = footer ? Math.ceil(footer.getBoundingClientRect().height) : 0;
+
+        document.documentElement.style.setProperty('--header-h', headerH + 'px');
+        document.documentElement.style.setProperty('--footer-h', footerH + 'px');
+      } catch (e) {
+        // no-op
+      }
+    };
+
+    // aplicar varias veces porque el header puede cambiar tras inicializar widgets
+    apply();
+    setTimeout(apply, 50);
+    setTimeout(apply, 300);
+    window.addEventListener('resize', () => setTimeout(apply, 50));
+    window.addEventListener('orientationchange', () => setTimeout(apply, 150));
   },
 
   /**
@@ -109,5 +139,4 @@ document.addEventListener('DOMContentLoaded', () => {
   App.init();
 });
 
-window.App = App;
-
+// Nota: no exponemos App en window para evitar errores en entornos donde la propiedad sea readonly.
