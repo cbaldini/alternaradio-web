@@ -32,10 +32,20 @@
 
     if (window.SliderController) {
         console.log('SliderController encontrado, inicializando...');
-        // Inicializar inmediatamente
+        // Dar tiempo al DOM para renderizarse completamente
         setTimeout(function() {
+            console.log('Inicializando slider ahora...');
             window.SliderController.init();
-        }, 10);
+            // Verificar que el auto-slide esté funcionando
+            setTimeout(function() {
+                if (window.SliderController.autoSlideInterval) {
+                    console.log('Auto-slide está activo');
+                } else {
+                    console.warn('Auto-slide NO está activo, reintentando...');
+                    window.SliderController.startAutoSlide();
+                }
+            }, 100);
+        }, 100);
     } else {
         console.error('SliderController no encontrado');
     }

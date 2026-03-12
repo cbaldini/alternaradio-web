@@ -9,7 +9,7 @@ window.SliderController = {
     indicators: null,
     currentIndex: 0,
     autoSlideInterval: null,
-    autoSlideDelay: 3000, // 3 segundos
+    autoSlideDelay: 5000, // 5 segundos
 
     /**
      * Inicializa el slider
@@ -59,26 +59,17 @@ window.SliderController = {
      * Configura los event listeners
      */
     setupEventListeners: function() {
-        // Pausar auto-slide al hover
-        const sliderContainer = document.querySelector('.slider-container');
-        if (sliderContainer) {
-            sliderContainer.addEventListener('mouseenter', () => this.stopAutoSlide());
-            sliderContainer.addEventListener('mouseleave', () => this.startAutoSlide());
-        }
-
         // Touch/swipe support
         let touchStartX = 0;
         let touchEndX = 0;
 
         this.track.addEventListener('touchstart', (e) => {
             touchStartX = e.changedTouches[0].screenX;
-            this.stopAutoSlide();
         });
 
         this.track.addEventListener('touchend', (e) => {
             touchEndX = e.changedTouches[0].screenX;
             this.handleSwipe(touchStartX, touchEndX);
-            this.startAutoSlide();
         });
     },
 
