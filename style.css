@@ -3,12 +3,19 @@
 /* Centrar todo el contenido */
 body {
 	text-align: center;
-	background-color: #272727;
+	background-color: #000000; /* Fondo negro en lugar de gris */
+	min-height: 100vh;
+	display: flex;
+	flex-direction: column;
+	margin: 0;
+	padding: 0;
+	padding-top: 140px; /* Espacio para el header fixed */
 }
 
 #content {
 	text-align: center;
 	background-color: #000000;
+	flex: 1; /* Ocupa todo el espacio disponible */
 }
 
 /* Contenedor principal centrado */
@@ -1135,11 +1142,12 @@ iframe {
 }
 
 #content {
-	min-height: auto;
+	min-height: 0; /* Permite que flexbox maneje el tamaño */
 	padding: 0;
-	margin: 0 0 20px 0;
+	margin: 0;
 	overflow-y: auto;
 	background-color: #000000;
+	flex: 1; /* Ya está definido arriba, pero aseguramos que ocupe el espacio */
 }
 
 /* Main: fondo pegado a la barra */
@@ -1153,7 +1161,26 @@ iframe {
 .site-footer {
 	text-align: center;
 	margin-top: 0;
-	padding-top: 0;
+	padding-top: 20px;
+	padding-bottom: 20px;
+	background-color: #000000;
+	color: #ffffff;
+	width: 100%;
+	flex-shrink: 0; /* Evita que el footer se comprima */
+}
+
+.site-footer p {
+	margin: 10px 0;
+	color: #ffffff;
+}
+
+.site-footer a {
+	color: #4CAF50;
+	text-decoration: none;
+}
+
+.site-footer a:hover {
+	text-decoration: underline;
 }
 
 /* Main: imágenes con el mismo alto */
@@ -1311,7 +1338,7 @@ iframe {
 @media screen and (max-width: 768px) {
 
 	body {
-		padding-top: 0;
+		padding-top: 160px; /* Más espacio en móviles por el header más grande */
 	}
 
 	.player-info-container {
