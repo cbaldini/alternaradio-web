@@ -57,10 +57,27 @@ window.ContentController = {
 
     console.log('ContentController: Cargando', path, 'hasProgram:', hasProgram);
 
+    // Destruir el slider si existe antes de cargar nuevo contenido
+    if (window.SliderController && typeof window.SliderController.destroy === 'function') {
+      window.SliderController.destroy();
+    }
+
     fetch(path, { cache: 'no-store' })
       .then(res => res.ok ? res.text() : Promise.reject(res))
       .then(html => {
         this.contentContainer.innerHTML = html;
+
+        // Ejecutar scripts inline del contenido cargado
+        const scripts = this.contentContainer.querySelectorAll('script');
+        scripts.forEach(script => {
+          const newScript = document.createElement('script');
+          if (script.src) {
+            newScript.src = script.src;
+          } else {
+            newScript.textContent = script.textContent;
+          }
+          script.parentNode.replaceChild(newScript, script);
+        });
 
         // Si es una página de programa específica, pausar el audio principal
         if (hasProgram && window.AudioManager) {

@@ -1,19 +1,43 @@
 <div class="container main-container">
-<div class="flyer">
-<!-- <img src="img/asa.jpeg" alt="Arte sin Aduanas - Viernes 22 hs."> -->
-<!-- <a href="voz_en_off/veo.html"><img src="img/veo.png" class="main-image" alt="Voz en Off - Viernes 20 hs."></a> -->
-    <a href=""><img src="img/dwm.png" class="main-image" alt=""></a>
-</div>
-<div class="flyer">
-    <a href="#ies"><img src="img/ies.png" class="main-image" alt=""></a>
-    <!-- <a href="#hr"><img src="img/hr.png" class="main-image" alt=""></a> -->
-<!--<a href="https://tvalterna.ar" target="_blank"><img src="miraAlternaTVx4.png" alt="MIRÁ ALTERNATV"></a>-->
-</div>
-</div>
-<div class="container">
-<div class="flyer">
+    <div class="slider-container">
+        <div class="slider-wrapper">
+            <div class="slider-track" id="sliderTrack">
+                <div class="slide">
+                    <a href="">
+                        <img src="img/hdt_flyer.png" class="slider-image" alt="HDT">
+                    </a>
+                </div>
+                <div class="slide">
+                    <a href="">
+                        <img src="img/dwm.png" class="slider-image" alt="De Quien Me Olvido">
+                    </a>
+                </div>
+                <div class="slide">
+                    <a href="#ies">
+                        <img src="img/ies.png" class="slider-image" alt="Informe Económico Semanal">
+                    </a>
+                </div>
+            </div>
+        </div>
 
+        <!-- Indicadores -->
+        <div class="slider-indicators" id="sliderIndicators"></div>
+    </div>
 </div>
-</div>
-<div style="text-align: center; padding-top: 20px">
-</div>
+
+<script>
+// Inicializar el slider cuando el contenido esté cargado
+(function() {
+    console.log('Script del slider ejecutándose');
+
+    if (window.SliderController) {
+        console.log('SliderController encontrado, inicializando...');
+        // Inicializar inmediatamente
+        setTimeout(function() {
+            window.SliderController.init();
+        }, 10);
+    } else {
+        console.error('SliderController no encontrado');
+    }
+})();
+</script>

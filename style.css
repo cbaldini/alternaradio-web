@@ -1146,6 +1146,7 @@ iframe {
 .main-container {
 	padding-top: 0;
 	margin: 0;
+	padding-bottom: 20px; /* Espacio inferior para que no toque el footer */
 }
 
 /* Footer del sitio - Reducir espacio entre content y footer */
@@ -1171,6 +1172,106 @@ iframe {
 	max-width: 100%;
 	height: auto;
 	display: block;
+}
+
+/* ========================================
+   SLIDER PROFESIONAL
+   ======================================== */
+.slider-container {
+	position: relative;
+	width: 100%;
+	max-width: 1200px;
+	margin: 0 auto;
+	overflow: hidden;
+	border-radius: 12px;
+	box-shadow: 0 10px 40px rgba(0, 0, 0, 0.3);
+}
+
+.slider-wrapper {
+	position: relative;
+	width: 100%;
+	overflow: hidden;
+	background: #1a1a1a;
+}
+
+.slider-track {
+	display: flex;
+	transition: transform 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+	will-change: transform;
+}
+
+.slide {
+	min-width: 100%;
+	position: relative;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	background: #1a1a1a;
+}
+
+.slide a {
+	display: block;
+	width: 100%;
+	text-decoration: none;
+}
+
+.slider-image {
+	width: 100%;
+	height: auto;
+	display: block;
+	object-fit: contain;
+	max-height: 60vh; /* Máximo 60% de la altura del viewport */
+	transition: transform 0.3s ease;
+}
+
+.slide a:hover .slider-image {
+	transform: scale(1.02);
+}
+
+
+/* Indicadores */
+.slider-indicators {
+	position: absolute;
+	bottom: 20px;
+	left: 50%;
+	transform: translateX(-50%);
+	display: flex;
+	gap: 10px;
+	z-index: 10;
+}
+
+.slider-indicator {
+	width: 12px;
+	height: 12px;
+	border-radius: 50%;
+	background: rgba(255, 255, 255, 0.4);
+	border: 2px solid rgba(255, 255, 255, 0.6);
+	cursor: pointer;
+	transition: all 0.3s ease;
+	padding: 0;
+}
+
+.slider-indicator:hover {
+	background: rgba(255, 255, 255, 0.6);
+	transform: scale(1.2);
+}
+
+.slider-indicator.active {
+	background: white;
+	width: 30px;
+	border-radius: 6px;
+}
+
+/* Animaciones */
+@keyframes slideIn {
+	from {
+		opacity: 0;
+		transform: translateX(100%);
+	}
+	to {
+		opacity: 1;
+		transform: translateX(0);
+	}
 }
 
 /* RESPONSIVE STYLES - Tablet (768px and below) */
@@ -1381,6 +1482,31 @@ iframe {
 		height: 400px !important;
 		width: auto !important;
 		max-width: 100%;
+	}
+
+	/* Slider responsive en tablet */
+	.slider-container {
+		border-radius: 8px;
+		max-width: 95%;
+	}
+
+	.slider-image {
+		max-height: 55vh; /* Máximo 55% de la altura del viewport en tablets */
+	}
+
+
+	.slider-indicators {
+		bottom: 15px;
+		gap: 8px;
+	}
+
+	.slider-indicator {
+		width: 10px;
+		height: 10px;
+	}
+
+	.slider-indicator.active {
+		width: 24px;
 	}
 
 	.container {
@@ -1617,6 +1743,33 @@ iframe {
 		height: 350px !important;
 		width: auto !important;
 		max-width: 100%;
+	}
+
+	/* Slider responsive en mobile */
+	.slider-container {
+		border-radius: 6px;
+		max-width: 100%;
+		margin: 0;
+	}
+
+	.slider-image {
+		max-height: 50vh; /* Máximo 50% de la altura del viewport en móviles */
+	}
+
+
+	.slider-indicators {
+		bottom: 10px;
+		gap: 6px;
+	}
+
+	.slider-indicator {
+		width: 8px;
+		height: 8px;
+		border-width: 1px;
+	}
+
+	.slider-indicator.active {
+		width: 20px;
 	}
 
 	.flyer img {
