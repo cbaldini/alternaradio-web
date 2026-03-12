@@ -1218,21 +1218,28 @@ iframe {
 	width: 100%;
 	overflow: hidden;
 	background: #1a1a1a;
+	min-height: 400px; /* Altura mínima para asegurar visibilidad */
 }
 
 .slider-track {
 	display: flex;
+	flex-direction: row; /* Asegurar dirección horizontal */
+	flex-wrap: nowrap; /* No permitir que se envuelvan */
 	transition: transform 0.6s cubic-bezier(0.4, 0, 0.2, 1);
 	will-change: transform;
+	height: 100%; /* Ocupar toda la altura del wrapper */
 }
 
 .slide {
 	min-width: 100%;
+	max-width: 100%;
+	flex-shrink: 0; /* Evitar que los slides se compriman */
 	position: relative;
 	display: flex;
 	align-items: center;
 	justify-content: center;
 	background: #1a1a1a;
+	height: 100%; /* Ocupar toda la altura */
 }
 
 .slide a {
