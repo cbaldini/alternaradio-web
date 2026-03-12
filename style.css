@@ -1805,10 +1805,29 @@ iframe {
 		border-radius: 0;
 		max-width: 100%;
 		margin: 0;
+		height: calc(100vh - 160px - 30px); /* Altura total menos header y footer aproximado */
+	}
+
+	.slider-wrapper {
+		height: 100%;
 	}
 
 	.slider-image {
-		max-height: 60vh; /* Aumentado para aprovechar más espacio en móviles */
+		width: 100%;
+		height: 100%;
+		object-fit: contain;
+	}
+
+	/* Ajustar el contenido para mobile */
+	#content {
+		justify-content: flex-start;
+		min-height: calc(100vh - 160px);
+	}
+
+	.main-container {
+		flex: 1;
+		display: flex;
+		flex-direction: column;
 	}
 
 
