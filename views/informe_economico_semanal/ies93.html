@@ -12,31 +12,22 @@
     <script type="text/javascript">
         (function() {
             window.Copy = function() {
-                var url = CONFIG.domain + "#ies/ies92";
+                var url = CONFIG.domain + "#ies/ies93";
                 var messageDiv = document.getElementById("copyMessage");
-
-                console.log("Copy function called, URL:", url);
-                console.log("Message div found:", messageDiv);
 
                 // Copiar al portapapeles
                 if (navigator.clipboard && navigator.clipboard.writeText) {
                     navigator.clipboard.writeText(url)
                         .then(function() {
-                            console.log("Clipboard API: copiado exitosamente");
                             if (messageDiv) {
                                 messageDiv.innerHTML = '¡Vínculo <strong>' + url + '</strong> copiado al portapapeles!';
                                 messageDiv.style.display = 'block';
-                                console.log("Mensaje mostrado");
-                            } else {
-                                console.error("No se encontró el div copyMessage");
                             }
                         })
-                        .catch(function(err) {
-                            console.error("Clipboard API error:", err);
+                        .catch(function() {
                             fallbackCopy(url, messageDiv);
                         });
                 } else {
-                    console.log("Usando fallback de copia");
                     fallbackCopy(url, messageDiv);
                 }
             };
@@ -56,18 +47,17 @@
                     if (success && messageDiv) {
                         messageDiv.innerHTML = '¡Vínculo <strong>' + url + '</strong> copiado al portapapeles!';
                         messageDiv.style.display = 'block';
-                        console.log("Copiado con execCommand");
                     }
                 } catch(err) {
-                    console.error("execCommand error:", err);
+                    // no-op
                 }
 
                 document.body.removeChild(textarea);
             }
 
             window.Share = function() {
-                var url = CONFIG.domain + "#ies/ies92";
-                var title = "Informe Económico Semanal 92 - Ajuste Sin Fin o Resistencia de los Ajustados";
+                var url = CONFIG.domain + "#ies/ies93";
+                var title = 'Informe Económico Semanal 93 - "Un Nunca Más social y productivo"';
                 var text = "Escuchá este programa de Informe Económico Semanal en Alterna Radio";
 
                 if (navigator.share) {
@@ -76,11 +66,9 @@
                         text: text,
                         url: url
                     })
-                    .then(function() {
-                        console.log('Compartido exitosamente');
-                    })
-                    .catch(function(error) {
-                        console.log('Error al compartir:', error);
+                    .catch(function() {
+                        // Si falla, al menos copiamos el vínculo
+                        Copy();
                     });
                 } else {
                     // Fallback: copiar al portapapeles
@@ -108,15 +96,15 @@
 </head>
 <body class="episode-page">
 
-<h2>Informe Económico Semanal 92 - "¿Ajuste sin fin o resistencia de los ajustados?"</h2>
+<h2>Informe Económico Semanal 93 - "Un Nunca Más social y productivo"</h2>
 
 <audio controls autoplay>
-  <source src="../../archivo/informe_economico_semanal/ies92.ogg" type="audio/mpeg">
+  <source src="../../archivo/informe_economico_semanal/ies93.ogg" type="audio/mpeg">
 </audio>
 
 <div class="episode-buttons">
   <input type="button" value="Copiar vínculo" onclick="Copy();" />
-  <a href="../../archivo/informe_economico_semanal/ies92.ogg"><input type="button" value="Descargar"></a>
+  <a href="../../archivo/informe_economico_semanal/ies93.ogg"><input type="button" value="Descargar"></a>
   <input type="button" value="Compartir" onclick="Share();" />
 </div>
 
@@ -129,4 +117,3 @@
 <script src="../../js/program-select.js"></script>
 </body>
 </html>
-
