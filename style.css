@@ -370,14 +370,14 @@ a{
 		85% 50%,
 		100% 50%;
 	background-size:
-		14% auto,
-		14% auto,
-		14% auto,
-		14% auto,
-		14% auto,
-		14% auto,
-		14% auto,
-		14% auto;
+		14% 100%,
+		14% 100%,
+		14% 100%,
+		14% 100%,
+		14% 100%,
+		14% 100%,
+		14% 100%,
+		14% 100%;
 	background-repeat: no-repeat;
 	opacity: 0.12;
 	pointer-events: none;
@@ -772,7 +772,25 @@ a{
 	}
 
 	.top::before {
-		display: none;
+		display: block;
+		background-size:
+			25% 100%,
+			25% 100%,
+			25% 100%,
+			25% 100%,
+			25% 100%,
+			25% 100%,
+			25% 100%,
+			25% 100%;
+		background-position:
+			0% 50%,
+			14% 50%,
+			28% 50%,
+			43% 50%,
+			57% 50%,
+			71% 50%,
+			85% 50%,
+			100% 50%;
 	}
 
 	.weather-widget-container {
@@ -1278,21 +1296,36 @@ iframe {
 .slider-container {
 	position: relative;
 	width: 100%;
-	max-width: 1200px;
+	max-width: 100%;
 	margin: 0 auto;
 	overflow: hidden;
-	border-radius: 12px;
+	border-radius: 0;
 	box-shadow: 0 10px 40px rgba(0, 0, 0, 0.3);
-	-webkit-overflow-scrolling: touch; /* Safari smooth scrolling */
+	-webkit-overflow-scrolling: touch;
 }
+
+.slider-blur-bg {
+	position: absolute;
+	inset: 0;
+	z-index: 0;
+	background-size: cover;
+	background-position: center;
+	background-repeat: no-repeat;
+	filter: blur(28px) brightness(0.55) saturate(1.3);
+	transform: scale(1.08);
+	transition: background-image 0.5s ease;
+	pointer-events: none;
+}
+
 
 .slider-wrapper {
 	position: relative;
 	width: 100%;
 	overflow: hidden;
-	background: #000000;
-	min-height: 400px; /* Altura mínima para asegurar visibilidad */
-	-webkit-transform: translateZ(0); /* Force hardware acceleration en Safari */
+	background: transparent;
+	min-height: 400px;
+	z-index: 1;
+	-webkit-transform: translateZ(0);
 }
 
 .slider-track {
@@ -1346,7 +1379,7 @@ iframe {
 	height: auto;
 	display: block;
 	object-fit: contain;
-	max-height: 75vh; /* Aumentado de 60vh a 75vh para aprovechar más espacio */
+	max-height: 75vh;
 	transition: transform 0.3s ease;
 }
 

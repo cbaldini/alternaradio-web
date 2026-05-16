@@ -34,6 +34,7 @@ window.SliderController = {
         this.createIndicators();
         this.setupEventListeners();
         this.startAutoSlide();
+        this.updateSlider();
     },
 
     /**
@@ -85,6 +86,16 @@ window.SliderController = {
         this.indicators.forEach((indicator, index) => {
             indicator.classList.toggle('active', index === this.currentIndex);
         });
+
+        // Actualizar fondo borroso
+        const blurBg = document.getElementById('sliderBlurBg');
+        if (blurBg) {
+            const currentSlide = this.slides[this.currentIndex];
+            const img = currentSlide ? currentSlide.querySelector('img') : null;
+            if (img) {
+                blurBg.style.backgroundImage = `url('${img.src}')`;
+            }
+        }
     },
 
     /**
