@@ -65,6 +65,15 @@ window.ContentController = {
     fetch(path, { cache: 'no-store' })
       .then(res => res.ok ? res.text() : Promise.reject(res))
       .then(html => {
+        // Si es un documento HTML completo, extraer solo el contenido del <body>
+        if (html.trim().toLowerCase().startsWith('<!doctype') || html.trim().toLowerCase().startsWith('<html')) {
+          const parser = new DOMParser();
+          const doc = parser.parseFromString(html, 'text/html');
+          // Remover links de CSS y scripts externos que puedan interferir
+          doc.querySelectorAll('link[rel="stylesheet"], style').forEach(el => el.remove());
+          html = doc.body.innerHTML;
+        }
+
         this.contentContainer.innerHTML = html;
 
         // Ejecutar scripts inline del contenido cargado

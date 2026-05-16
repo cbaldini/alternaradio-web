@@ -4,55 +4,56 @@
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <!-- CSS  -->
-<link href="style.css?v=20260516002" rel="stylesheet" type="text/css" />
+<link href="style.css?v=1.4.1" rel="stylesheet" type="text/css" />
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
 <link href="https://vjs.zencdn.net/8.3.0/video-js.css" rel="stylesheet" />
 <title>Alterna Radio FM 88.1 MHZ</title>
 <link rel="icon" type="image/x-icon" href="favicon.png">
 
 <!-- Core Dependencies -->
-<script src="js/config.js?v=20260313001"></script>
-<script src="js/audio-manager.js?v=20260313001"></script>
-<script src="js/program-select.js?v=20260313001"></script>
-<script src="js/slider.js?v=20260516001"></script>
+<script src="js/config.js?v=1.0.0"></script>
+<script src="js/audio-manager.js?v=1.0.0"></script>
+<script src="js/program-select.js?v=1.0.0"></script>
+<script src="js/slider.js?v=1.0.0"></script>
 
 <!-- MVC Architecture - Utils -->
-<script src="js/utils/helpers.js?v=20260313001"></script>
+<script src="js/utils/helpers.js?v=1.0.0"></script>
 
 <!-- MVC Architecture - Models -->
-<script src="js/models/StreamModel.js?v=20260313001"></script>
-<script src="js/models/WeatherModel.js?v=20260313001"></script>
-<script src="js/models/DateModel.js?v=20260313001"></script>
+<script src="js/models/StreamModel.js?v=1.0.0"></script>
+<script src="js/models/WeatherModel.js?v=1.0.0"></script>
+<script src="js/models/DateModel.js?v=1.0.0"></script>
 
 <!-- MVC Architecture - Views -->
-<script src="js/views/StreamView.js?v=20260313001"></script>
-<script src="js/views/WeatherView.js?v=20260313001"></script>
-<script src="js/views/DateView.js?v=20260313001"></script>
+<script src="js/views/StreamView.js?v=1.0.0"></script>
+<script src="js/views/WeatherView.js?v=1.0.0"></script>
+<script src="js/views/DateView.js?v=1.0.0"></script>
 
 <!-- MVC Architecture - Controllers -->
-<script src="js/controllers/StreamController.js?v=20260313001"></script>
-<script src="js/controllers/WeatherController.js?v=20260313001"></script>
-<script src="js/controllers/DateController.js?v=20260313001"></script>
-<script src="js/controllers/ContentController.js?v=20260313001"></script>
-<script src="js/controllers/AudioPlayerController.js?v=20260313001"></script>
-<script src="js/controllers/UIController.js?v=20260313001"></script>
+<script src="js/controllers/StreamController.js?v=1.0.0"></script>
+<script src="js/controllers/WeatherController.js?v=1.0.0"></script>
+<script src="js/controllers/DateController.js?v=1.0.0"></script>
+<script src="js/controllers/ContentController.js?v=1.0.0"></script>
+<script src="js/controllers/AudioPlayerController.js?v=1.0.0"></script>
+<script src="js/controllers/UIController.js?v=1.0.0"></script>
 
 <!-- MVC Architecture - App -->
-<script src="js/app.js?v=20260313001"></script>
+<script src="js/app.js?v=1.0.0"></script>
 </head>
 <body style="background-color:#000000; background-size: 25%;">
 <div class="top">
 
 	<div class="logo-info-wrapper">
-		<div class="logo-slogan-group">
-			<div class="logo">
-				<a href="#en_vivo"><img src="img/logoradioplano.png" alt=""></a>
-			</div>
-			<div class="radio-slogan">ROCKERA · COMUNITARIA · ALTERNATIVA</div>
+		<div class="logo">
+			<a href="#en_vivo"><img src="img/logoradioplano.png" alt=""></a>
 		</div>
-		<div class="weather-widget-container">
-			<span class="date-box" id="id-date">-- de --</span>
-			<span class="time-box" id="id-time">--:--</span>
-			<span class="weather-box" id="id-weather">--°C</span>
+		<div class="logo-right-col">
+			<div class="radio-slogan">ROCKERA · COMUNITARIA · ALTERNATIVA</div>
+			<div class="weather-widget-container">
+				<span class="date-box" id="id-date">-- de --</span>
+				<span class="time-box" id="id-time">--:--</span>
+				<span class="weather-box" id="id-weather">--°C</span>
+			</div>
 		</div>
 	</div>
 
@@ -64,14 +65,15 @@
 	</button>
 
 	<div class="player-info-container-mobile">
-		<div class="player-info">
-			<strong class="player-label">Suena ahora:</strong>
-			<span id="title-mobile"></span>
-		</div>
-		<div class="player-info">
-			<strong class="player-label">Oyentes:</strong>
-			<span id="listeners-mobile"></span>
-		</div>
+		<span class="mobile-now-playing">
+			<span class="mobile-icon">🎵</span>
+			<span id="title-mobile">—</span>
+		</span>
+		<span class="mobile-separator">·</span>
+		<span class="mobile-listeners">
+			<span class="mobile-icon">👥</span>
+			<span id="listeners-mobile">—</span>
+		</span>
 	</div>
 
 	<div class="weather-widget-container-desktop">

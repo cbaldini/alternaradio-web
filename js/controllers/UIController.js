@@ -32,6 +32,8 @@ const UIController = {
     this.hamburgerBtn.addEventListener('click', () => {
       this.hamburgerBtn.classList.toggle('active');
       this.navbarMenu.classList.toggle('active');
+      // Recalcular padding tras la transición
+      setTimeout(() => this.adjustBodyPadding(), 350);
     });
 
     // Cerrar menú al hacer click en un link
@@ -82,14 +84,25 @@ const UIController = {
   },
 
   /**
-   * Ajusta el padding del body según la altura de la barra superior
+   * Ajusta el padding del body según la altura de la barra superior.
+   * En desktop: el CSS ya lo maneja con variables.
+   * En mobile: ajusta dinámicamente según el navbar colapsable.
    */
   adjustBodyPadding: function() {
+    const isDesktop = window.innerWidth > 768;
+    if (isDesktop) {
+      return;
+    }
+
+    // En mobile: si el navbar está abierto, contar su altura
     const topBar = document.querySelector('.top');
-    if (topBar) {
+    const navbar = document.querySelector('.navbar');
+    if (topBar && navbar) {
       const topBarHeight = topBar.offsetHeight;
-      document.body.style.paddingTop = topBarHeight + 'px';
-      console.log('Body padding ajustado a:', topBarHeight + 'px');
+      const navbarHeight = navbar.classList.contains('active') ? navbar.offsetHeight : 0;
+      const totalHeight = topBarHeight + navbarHeight;
+      document.body.style.paddingTop = totalHeight + 'px';
+      console.log('Body padding ajustado (mobile):', totalHeight + 'px');
     }
   },
 
