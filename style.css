@@ -343,7 +343,51 @@ a{
 	align-items: flex-end;
 	padding: 0;
 	min-height: auto;
+	overflow: hidden;
 }
+
+.top::before {
+	content: '';
+	position: absolute;
+	inset: 0;
+	z-index: 0;
+	background-image:
+		url('img/bloque_electronica.png'),
+		url('img/bloque_millenials.png'),
+		url('img/bloque_nacional.png'),
+		url('img/bloque_ochentoso.png'),
+		url('img/bloque_setentas.png'),
+		url('img/bloque_80s_90s.png'),
+		url('img/hdt_flyer.png'),
+		url('img/dwm.png');
+	background-position:
+		0% 50%,
+		14% 50%,
+		28% 50%,
+		43% 50%,
+		57% 50%,
+		71% 50%,
+		85% 50%,
+		100% 50%;
+	background-size:
+		14% auto,
+		14% auto,
+		14% auto,
+		14% auto,
+		14% auto,
+		14% auto,
+		14% auto,
+		14% auto;
+	background-repeat: no-repeat;
+	opacity: 0.12;
+	pointer-events: none;
+}
+
+.top > * {
+	position: relative;
+	z-index: 1;
+}
+
 
 /* Decoraciones de radios retro en la barra superior */
 .radio-decorations {
@@ -459,6 +503,34 @@ a{
 	flex-wrap: wrap;
 	align-items: center;
 	width: auto;
+}
+
+.logo-slogan-group {
+	display: flex;
+	flex-direction: row;
+	align-items: center;
+	gap: 10px;
+}
+
+@keyframes sloganFade {
+	0%   { opacity: 1; }
+	70%  { opacity: 1; }
+	83%  { opacity: 0.05; }
+	90%  { opacity: 0.05; }
+	100% { opacity: 1; }
+}
+
+.radio-slogan {
+	order: 2;
+	font-size: 1.1rem;
+	font-weight: 100;
+	letter-spacing: 0.2em;
+	color: #b0b0b0;
+	text-transform: uppercase;
+	text-align: center;
+	font-family: sans-serif;
+	white-space: nowrap;
+	animation: sloganFade 6s ease-in-out infinite;
 }
 
 .logo {
