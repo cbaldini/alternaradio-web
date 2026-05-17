@@ -35,10 +35,10 @@ window.SliderController = {
         const pending = imgs.filter(img => !img.complete);
 
         const afterLoad = () => {
-            // Desktop: inyectar blur. Mobile: sin blur.
+            // Desktop: inyectar blur. Mobile: sin blur. Slides con clase no-blur no tienen efecto.
             this.slides.forEach(slide => {
                 let bgDiv = slide.querySelector('.slide-bg-blur');
-                if (!this.isVertical()) {
+                if (!this.isVertical() && !slide.classList.contains('no-blur')) {
                     if (!bgDiv) {
                         bgDiv = document.createElement('div');
                         bgDiv.classList.add('slide-bg-blur');
