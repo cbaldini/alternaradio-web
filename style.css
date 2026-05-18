@@ -568,7 +568,7 @@ a{
 	text-align: center;
 	font-family: 'Inter', sans-serif;
 	white-space: nowrap;
-	animation: sloganFade 6s ease-in-out infinite;
+	animation: none;
 }
 
 .logo {
