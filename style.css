@@ -1,7 +1,7 @@
 /* Alterna Radio - Version 2.1.0 - MVC Architecture */
 
 :root {
-	--header-h: 140px;
+	--header-h: 158px;
 	--footer-h: 0px;
 	--accent: #cc0000;
 	--accent-hover: #ff4444;
@@ -359,6 +359,22 @@ a{
   padding: 0;
   margin: 0;
   align-self: flex-end;
+  position: relative;
+  z-index: 20;
+}
+
+.navbar::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: rgba(10, 10, 10, 0.95);
+  z-index: 1;
+  pointer-events: none;
+}
+
+.navbar > * {
+  position: relative;
+  z-index: 3;
 }
 
 .top {
@@ -538,8 +554,8 @@ a{
 	align-items: center;
 	position: absolute;
 	left: 50%;
-	top: 50%;
-	transform: translate(-50%, -50%);
+	top: 3px;
+	transform: translateX(-50%);
 	z-index: 2;
 }
 
@@ -674,6 +690,8 @@ a{
 	background-color: transparent;
 	margin-left: auto;
 	margin-right: 0;
+	position: relative;
+	z-index: 10;
 }
 
 /* Info container mobile - oculto por defecto */
