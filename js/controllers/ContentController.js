@@ -66,15 +66,33 @@ window.ContentController = {
       .then(res => res.ok ? res.text() : Promise.reject(res))
       .then(html => {
         // Si es un documento HTML completo, extraer solo el contenido del <body>
+        let headScripts = [];
         if (html.trim().toLowerCase().startsWith('<!doctype') || html.trim().toLowerCase().startsWith('<html')) {
           const parser = new DOMParser();
           const doc = parser.parseFromString(html, 'text/html');
           // Remover links de CSS y scripts externos que puedan interferir
           doc.querySelectorAll('link[rel="stylesheet"], style').forEach(el => el.remove());
+          // Capturar scripts inline del <head> (excluir los que cargan libs ya disponibles globalmente)
+          doc.querySelectorAll('head script').forEach(s => {
+            if (!s.src || (!s.src.includes('config.js') && !s.src.includes('video-js'))) {
+              headScripts.push({ src: s.src, textContent: s.textContent });
+            }
+          });
           html = doc.body.innerHTML;
         }
 
         this.contentContainer.innerHTML = html;
+
+        // Ejecutar primero los scripts del <head> (definen funciones como Share, Copy, etc.)
+        headScripts.forEach(scriptData => {
+          const newScript = document.createElement('script');
+          if (scriptData.src) {
+            newScript.src = scriptData.src;
+          } else {
+            newScript.textContent = scriptData.textContent;
+          }
+          document.head.appendChild(newScript);
+        });
 
         // Ejecutar scripts inline del contenido cargado
         const scripts = this.contentContainer.querySelectorAll('script');
