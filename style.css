@@ -2254,7 +2254,7 @@ audio {
    PANEL HISTORIAL DE CANCIONES
    ======================================== */
 .song-history-panel {
-	position: relative;
+	position: absolute;
 	top: 40%;
 	transform: translateY(-50%);
 	left: 12px;
