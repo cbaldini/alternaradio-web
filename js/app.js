@@ -56,6 +56,7 @@ const App = {
       DateController.init();
       ContentController.init();
 
+
       // Ajustar layout según alturas reales (mobile)
       this.setupViewportLayoutVars();
 

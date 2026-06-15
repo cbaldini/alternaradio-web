@@ -88,6 +88,7 @@ window.SliderController = {
             slide.style.flexShrink = '0';
             slide.style.margin = '0 0 8px 0';
             slide.style.opacity = '1';
+            slide.style.filter = 'none';
             // Quitar blur si existe
             const bgDiv = slide.querySelector('.slide-bg-blur');
             if (bgDiv) bgDiv.style.display = 'none';
@@ -228,7 +229,10 @@ window.SliderController = {
         }
 
         this.slides.forEach((slide, i) => {
-            slide.style.opacity = i === this.currentIndex ? '1' : '0.5';
+            const isActive = i === this.currentIndex;
+            slide.style.opacity = isActive ? '1' : '0.5';
+            slide.style.filter = isActive ? 'none' : 'blur(6px)';
+            slide.style.transition = 'opacity 0.4s ease, filter 0.4s ease';
         });
 
         const blurBg = document.getElementById('sliderBlurBg');

@@ -1,5 +1,17 @@
 <div class="container main-container">
     <div class="slider-container">
+
+        <!-- Panel: últimas canciones reproducidas -->
+        <aside class="song-history-panel" id="songHistoryPanel" aria-label="Últimas canciones">
+            <div class="history-header">
+                <span class="history-icon">🎵</span>
+                <span class="history-label">Últimas canciones</span>
+            </div>
+            <ul class="history-list" id="song-history-list">
+                <li class="history-empty">Cargando...</li>
+            </ul>
+        </aside>
+
         <div class="slider-wrapper">
             <div class="slider-track" id="sliderTrack">
                 <div class="slide no-blur">
@@ -56,7 +68,7 @@
 </div>
 
 <script>
-// Inicializar el slider cuando el contenido esté cargado
+// Inicializar el slider y el historial de canciones cuando el contenido esté cargado
 (function() {
     console.log('Script del slider ejecutándose');
 
@@ -78,6 +90,14 @@
         }, 100);
     } else {
         console.error('SliderController no encontrado');
+    }
+
+    // Inicializar historial de canciones
+    if (window.HistoryController) {
+        if (window.HistoryController.intervalId) {
+            window.HistoryController.destroy();
+        }
+        window.HistoryController.init();
     }
 })();
 </script>
