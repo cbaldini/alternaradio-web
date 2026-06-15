@@ -49,7 +49,7 @@ app.get('/api/history', (req, res) => {
 // -------------------------------------------------------
 // Polling al servidor Icecast (cada 5 segundos)
 // -------------------------------------------------------
-const STATUS_URL = 'https://radio.alterna.ar:8443/status-json.xsl';
+const STATUS_URL = 'http://localhost:8000/status-json.xsl';
 let lastTitle = '';
 
 function pickSource(source) {
