@@ -4,3 +4,10 @@ archivo/
 # IDE
 .idea/
 
+# Node.js
+node_modules/
+package-lock.json
+
+# Base de datos SQLite (se regenera al correr el servidor)
+history.db
+
