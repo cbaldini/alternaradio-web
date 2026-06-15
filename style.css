@@ -2255,7 +2255,7 @@ audio {
    ======================================== */
 .song-history-panel {
 	position: absolute;
-	top: 40%;
+	top: 50%;
 	transform: translateY(-50%);
 	left: 12px;
 	max-height: 90%;
