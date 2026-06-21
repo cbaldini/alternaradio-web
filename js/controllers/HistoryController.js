@@ -39,7 +39,7 @@ const HistoryController = {
     this.container.innerHTML = songs.map(function (song, i) {
       return (
         '<li class="history-item">' +
-          '<span class="history-num">' + (i + 1) + '</span>' +
+          '<span class="history-num">' + '-' + (i + 1) + '</span>' +
           '<span class="history-title">' + HistoryController.escapeHtml(Helpers.cleanTitle(song.title)) + '</span>' +
           '<span class="history-time">' + HistoryController.relativeTime(song.played_at) + '</span>' +
         '</li>'
