@@ -37,7 +37,7 @@ app.use(express.static(path.join(__dirname)));
 // -------------------------------------------------------
 app.get('/api/history', (req, res) => {
   try {
-    const stmt  = db.prepare('SELECT id, title, played_at FROM song_history WHERE id < (SELECT MAX(id) FROM song_history) ORDER BY id DESC LIMIT 9');
+    const stmt  = db.prepare('SELECT id, title, played_at FROM song_history WHERE id < (SELECT MAX(id) FROM song_history) ORDER BY id DESC LIMIT 5');
     const songs = stmt.all();
     res.json({ success: true, songs });
   } catch (e) {
