@@ -169,13 +169,13 @@ a {
 
 /* Estilos para páginas de emisiones individuales */
 .episode-page {
-	background-color: #0f0f0f;
+	background-color: #000000;
 	text-align: center;
 	padding: 40px 20px;
 }
 
 .episode-page h2 {
-	color: #f0f0f0;
+	color: white;
 	margin-bottom: 30px;
 }
 
@@ -430,7 +430,7 @@ a{
 		14% 100%,
 		14% 100%;
 	background-repeat: no-repeat;
-	opacity: 0.03125;
+	opacity: 0.025;
 	pointer-events: none;
 }
 
@@ -1671,6 +1671,11 @@ iframe {
 		transform: none;
 	}
 
+	.logo img {
+		width: 131px;
+		height: auto;
+	}
+
 	.player-info-container {
 		display: flex;
 		flex-direction: row;
@@ -2082,36 +2087,6 @@ iframe {
 		color: #cccccc;
 	}
 
-	.dropdown-content {
-		position: static;
-		display: none;
-		background-color: #161616;
-		box-shadow: none;
-		min-width: auto;
-	}
-
-	.dropdown-content a {
-		padding-left: 32px;
-		background-color: #161616;
-		color: #aaaaaa;
-		font-size: 0.85rem;
-	}
-
-	.dropdown-content a:hover {
-		background-color: rgba(210, 0, 0, 0.2);
-		color: #ff4444;
-	}
-
-	/* Show dropdown on mobile when active */
-	.dropdown.active .dropdown-content {
-		display: block;
-	}
-
-	.dropdown.active .dropbtn {
-		background-color: rgba(122, 26, 26, 0.3);
-		color: #ffffff;
-	}
-
 	p {
 		font-size: 85%;
 	}
@@ -2394,103 +2369,3 @@ audio {
 	}
 }
 
-/* Estilos para páginas de programas */
-.program-page {
-	background-color: #0f0f0f;
-	text-align: center;
-	padding: 40px 20px;
-}
-
-.flyer {
-	background: linear-gradient(135deg, rgba(20,20,20,0.9) 0%, rgba(15,15,15,0.95) 100%);
-	border: 1px solid rgba(204, 0, 0, 0.3);
-	border-radius: 8px;
-	padding: 30px;
-	margin: 20px auto;
-	max-width: 800px;
-	box-shadow: 0 8px 32px rgba(0,0,0,0.6);
-}
-
-.flyer h2 {
-	color: #f0f0f0;
-	font-size: 28px;
-	margin: 20px 0;
-	font-weight: 600;
-}
-
-.program-links {
-	text-align: center;
-	padding: 20px;
-}
-
-.program-links p {
-	margin: 10px 0;
-}
-
-.program-links a {
-	color: #cc0000;
-	text-decoration: none;
-	font-size: 16px;
-	transition: all 0.3s ease;
-	display: inline-block;
-	padding: 8px 12px;
-}
-
-.program-links a:hover {
-	color: #ff4444;
-	text-decoration: underline;
-}
-
-.episode-page {
-	background-color: #0f0f0f;
-	text-align: center;
-	padding: 40px 20px;
-}
-
-.episode-page h2 {
-	color: #f0f0f0;
-	font-size: 24px;
-	margin: 20px 0;
-}
-
-.episode-buttons {
-	display: flex;
-	flex-wrap: wrap;
-	justify-content: center;
-	gap: 10px;
-	margin: 20px 0;
-}
-
-.episode-buttons input[type="button"],
-.episode-buttons a input[type="button"] {
-	padding: 10px 20px;
-	background-color: #cc0000;
-	color: #fff;
-	border: none;
-	border-radius: 4px;
-	cursor: pointer;
-	font-size: 14px;
-	transition: background-color 0.3s ease;
-}
-
-.episode-buttons input[type="button"]:hover,
-.episode-buttons a input[type="button"]:hover {
-	background-color: #ff4444;
-}
-
-.episode-image {
-	margin: 30px 0;
-}
-
-.episode-image img {
-	max-width: 100%;
-	height: auto;
-	border-radius: 8px;
-}
-
-audio {
-	width: 100%;
-	max-width: 600px;
-	margin: 20px auto;
-	display: block;
-}
