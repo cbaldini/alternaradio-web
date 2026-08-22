@@ -52,16 +52,13 @@ const StreamView = {
       return "[Bloque 80's & 90's]";
     }
 
-    // Vie 18:00–20:00 y 21:05–00:00 → [Bloque Electrónica]
-    if (day === 5 && (
-      (total >= 18 * 60 && total < 20 * 60) ||
-      (total >= 21 * 60 + 5)
-    )) {
+    // Vie 20:00–22:00 → [Bloque Electrónica]
+    if (day === 5 && total >= 20 * 60 && total < 22 * 60) {
       return '[Bloque Electrónica]';
     }
 
-    // Sáb 18:00–00:00 → [Bloque Electrónica]
-    if (day === 6 && total >= 18 * 60) {
+    // Sáb 20:00–22:00 → [Bloque Electrónica]
+    if (day === 6 && total >= 20 * 60 && total < 22 * 60) {
       return '[Bloque Electrónica]';
     }
 
