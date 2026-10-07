@@ -49,25 +49,66 @@
                 } catch(err) {
                     // no-op
                 }
+
                 document.body.removeChild(textarea);
             }
+
+            window.Share = function() {
+                var url = CONFIG.domain + "#ies/ies121";
+                var title = 'Informe Económico Semanal 121 - Deudas y mora: dos caras de la misma moneda';
+                var text = "Escuchá este programa de Informe Económico Semanal en Alterna Radio";
+
+                if (navigator.share) {
+                    navigator.share({
+                        title: title,
+                        text: text,
+                        url: url
+                    })
+                    .catch(function() {
+                        Copy();
+                    });
+                } else {
+                    Copy();
+                    alert('Función de compartir no disponible. El vínculo ha sido copiado al portapapeles.');
+                }
+            };
         })();
     </script>
+    <script type="text/javascript">
+        if (typeof AudioManager !== 'undefined') {
+            AudioManager.pauseMainAudio();
+        }
+
+        document.addEventListener('play', function(e) {
+            if (e.target.tagName === 'AUDIO' && e.target.id !== 'main-audio') {
+                if (typeof AudioManager !== 'undefined') {
+                    AudioManager.pauseMainAudio();
+                }
+            }
+        }, true);
+    </script>
 </head>
-<body class="program-page" style="background-color:#0f0f0f; text-align: center;">
-<div class="container">
-<div class="flyer program-select-container" data-program-select="ies">
-<h2>Informe Económico Semanal</h2>
-<h3>121 - "Deudas y mora: dos caras de la misma moneda"</h3>
-<div style="text-align: center; margin: 20px 0;">
-<button onclick="Copy()" class="copy-button">Copiar enlace</button>
-<div id="copyMessage" style="display:none; margin-top:10px; color: #4CAF50;"></div>
+<body class="episode-page">
+
+<h2>Informe Económico Semanal 121 - Deudas y mora: dos caras de la misma moneda</h2>
+
+<audio controls autoplay>
+  <source src="../../archivo/informe_economico_semanal/ies121.ogg" type="audio/mpeg">
+</audio>
+
+<div class="episode-buttons">
+  <input type="button" value="Copiar vínculo" onclick="Copy();" />
+  <a href="../../archivo/informe_economico_semanal/ies121.ogg"><input type="button" value="Descargar"></a>
+  <input type="button" value="Compartir" onclick="Share();" />
+  <a href="ies.html"><input type="button" value="Volver a Informe Económico Semanal"></a>
 </div>
-<div style="text-align: center; margin-top: 30px;">
-<img src="../../img/ies.png" width="400" height="600" alt="Informe Económico Semanal" style="display: block; margin: 0 auto;">
+
+<div id="copyMessage" style="display: none; color: #4CAF50; margin: 20px auto; padding: 15px; background-color: rgba(76, 175, 80, 0.1); border: 2px solid #4CAF50; border-radius: 8px; max-width: 90%; word-wrap: break-word; text-align: center; font-size: 16px;"></div>
+
+<div class="episode-image">
+  <img src="../../img/ies.png" width="400" height="600" alt="Informe Económico Semanal">
 </div>
-</div>
-</div>
+
 <script src="../../js/program-select.js"></script>
 </body>
 </html>
