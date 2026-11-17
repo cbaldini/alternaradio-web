@@ -11,6 +11,8 @@
     <script src="../../js/config.js"></script>
     <script type="text/javascript">
         (function() {
+            var episodeTitle = 'Informe Económico Semanal 94 - "Crecimiento Relativo y Desacoplado"';
+            
             window.Copy = function() {
                 var url = CONFIG.domain + "#ies/ies94";
                 var messageDiv = document.getElementById("copyMessage");
@@ -57,8 +59,7 @@
 
             window.Share = function() {
                 var url = CONFIG.domain + "#ies/ies94";
-                var title = 'Informe Económico Semanal 94 - "Crecimiento Relativo y Desacoplado"';
-                var text = "Escuchá este programa de Informe Económico Semanal en Alterna Radio";
+                var text = "Escuchá " + episodeTitle + " en Alterna Radio";
 
                 if (navigator.share) {
                     navigator.share({

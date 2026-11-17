@@ -11,6 +11,8 @@
     <script src="../../js/config.js"></script>
     <script type="text/javascript">
         (function() {
+            var episodeTitle = 'Informe Económico Semanal 104 - ¿Desregular nos libera?';
+            
             window.Copy = function() {
                 var url = CONFIG.domain + "#ies/ies104";
                 var messageDiv = document.getElementById("copyMessage");
@@ -55,8 +57,7 @@
 
             window.Share = function() {
                 var url = CONFIG.domain + "#ies/ies104";
-                var title = 'Informe Económico Semanal 104 - ¿Desregular nos libera?';
-                var text = "Escuchá este programa de Informe Económico Semanal en Alterna Radio";
+                var text = "Escuchá " + episodeTitle + " en Alterna Radio";
 
                 if (navigator.share) {
                     navigator.share({

@@ -1,56 +1,86 @@
 <!DOCTYPE html>
-<html>
+<html lang="es">
 <head>
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <!-- CSS  -->
-<link href="style.css" rel="stylesheet" type="text/css" />
+<link href="../../style.css" rel="stylesheet" type="text/css" />
 <link href="https://vjs.zencdn.net/8.3.0/video-js.css" rel="stylesheet" />
 <title>Alterna Radio FM 88.1 MHZ</title>
-<link rel="icon" type="image/x-icon" href="favicon.png">
-        <script type="text/javascript">
+<link rel="icon" type="image/x-icon" href="../../favicon.png">
+    <script src="../../js/config.js"></script>
+    <script type="text/javascript">
         (function() {
+            var episodeTitle = 'Informe Económico Semanal 12';
+            
             window.Copy = function() {
                 var url = CONFIG.domain + "#ies/ies12";
-                var textarea = document.getElementById("urlCopied");
-                if (textarea) {
-                    textarea.value = url;
-                    textarea.focus();
-                    textarea.select();
+                var messageDiv = document.getElementById("copyMessage");
 
-                    // Intentar copiar con execCommand (compatible)
-                    try {
-                        var success = document.execCommand('copy');
-                        if (success) {
-                            console.log("Copiado exitosamente:", url);
-                        } else {
-                            console.log("execCommand devolvió false");
-                        }
-                    } catch(err) {
-                        console.error("execCommand error:", err);
-                    }
+                if (navigator.clipboard && navigator.clipboard.writeText) {
+                    navigator.clipboard.writeText(url)
+                        .then(function() {
+                            if (messageDiv) {
+                                messageDiv.innerHTML = '¡Vínculo <strong>' + url + '</strong> copiado al portapapeles!';
+                                messageDiv.style.display = 'block';
+                            }
+                        })
+                        .catch(function() {
+                            fallbackCopy(url, messageDiv);
+                        });
+                } else {
+                    fallbackCopy(url, messageDiv);
+                }
+            };
 
-                    // También intentar con Clipboard API
-                    if (navigator.clipboard && navigator.clipboard.writeText) {
-                        navigator.clipboard.writeText(url)
-                            .then(function() {
-                                console.log("Clipboard API: copiado");
-                            })
-                            .catch(function(err) {
-                                console.error("Clipboard API error:", err);
-                            });
+            function fallbackCopy(url, messageDiv) {
+                var textarea = document.createElement('textarea');
+                textarea.value = url;
+                textarea.style.position = 'fixed';
+                textarea.style.opacity = '0';
+                document.body.appendChild(textarea);
+                textarea.focus();
+                textarea.select();
+
+                try {
+                    var success = document.execCommand('copy');
+                    if (success && messageDiv) {
+                        messageDiv.innerHTML = '¡Vínculo <strong>' + url + '</strong> copiado al portapapeles!';
+                        messageDiv.style.display = 'block';
                     }
+                } catch(err) {
+                    // no-op
+
+                }
+
+                document.body.removeChild(textarea);
+            }
+
+            window.Share = function() {
+                var url = CONFIG.domain + "#ies/ies12";
+                var text = "Escuchá " + episodeTitle + " en Alterna Radio";
+
+                if (navigator.share) {
+                    navigator.share({
+                        title: episodeTitle,
+                        text: text,
+                        url: url
+                    })
+                    .catch(function() {
+                        Copy();
+                    });
+                } else {
+                    Copy();
+                    alert('Función de compartir no disponible. El vínculo ha sido copiado al portapapeles.');
                 }
             };
         })();
     </script>
     <script type="text/javascript">
-        // Cuando este archivo cargue, pausa la radio en vivo
         if (typeof AudioManager !== 'undefined') {
             AudioManager.pauseMainAudio();
         }
 
-        // También monitorear cualquier elemento de audio en esta página
         document.addEventListener('play', function(e) {
             if (e.target.tagName === 'AUDIO' && e.target.id !== 'main-audio') {
                 if (typeof AudioManager !== 'undefined') {
@@ -60,23 +90,27 @@
         }, true);
     </script>
 </head>
-<body style="background-color:#272727; text-align: center;">
+<body class="episode-page">
 
 <h2>Informe Económico Semanal 12</h2>
 
-    <audio controls autoplay> 
-      <source src="archivo/informe_economico_semanal/ies12.ogg" type="audio/mpeg">
-    </audio> 
-            <input type="button" value="Copiar vínculo" onclick="Copy();" />
-            <a href="archivo/informe_economico_semanal/ies12.ogg"><input type="button" value="Descargar"></a>
-            <br />
-            <p>Vínculo: <textarea id="urlCopied" rows="1" cols="70"></textarea></p> 
-<div class="flyer">
-<img src="img/ies.png" width="400" height="600" alt="">
+<audio controls autoplay>
+  <source src="../../archivo/informe_economico_semanal/ies12.ogg" type="audio/mpeg">
+</audio>
+
+<div class="episode-buttons">
+  <input type="button" value="Copiar vínculo" onclick="Copy();" />
+  <a href="../../archivo/informe_economico_semanal/ies12.ogg"><input type="button" value="Descargar"></a>
+  <input type="button" value="Compartir" onclick="Share();" />
+  <a href="ies.html"><input type="button" value="Volver a Informe Económico Semanal"></a>
 </div>
 
+<div id="copyMessage" style="display: none; color: #4CAF50; margin: 20px auto; padding: 15px; background-color: rgba(76, 175, 80, 0.1); border: 2px solid #4CAF50; border-radius: 8px; max-width: 90%; word-wrap: break-word; text-align: center; font-size: 16px;"></div>
 
+<div class="episode-image">
+  <img src="../../img/ies.png" width="400" height="600" alt="Informe Económico Semanal">
+</div>
 
-
+<script src="../../js/program-select.js"></script>
 </body>
 </html>
