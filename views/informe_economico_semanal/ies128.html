@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<!-- CSS  -->
+<link href="../../style.css" rel="stylesheet" type="text/css" />
+<link href="https://vjs.zencdn.net/8.3.0/video-js.css" rel="stylesheet" />
+<title>Alterna Radio FM 88.1 MHZ</title>
+<link rel="icon" type="image/x-icon" href="../../favicon.png">
+    <script src="../../js/config.js"></script>
+    <script type="text/javascript">
+        (function() {
+            var episodeTitle = '"Informe Económico Semanal 128 - Soberanía: del Paraná al río Bravo"';
+
+            window.Copy = function() {
+                var url = CONFIG.domain + "#ies/ies128";
+                var messageDiv = document.getElementById("copyMessage");
+
+                if (navigator.clipboard && navigator.clipboard.writeText) {
+                    navigator.clipboard.writeText(url)
+                        .then(function() {
+                            if (messageDiv) {
+                                messageDiv.innerHTML = '¡Vínculo <strong>' + url + '</strong> copiado al portapapeles!';
+                                messageDiv.style.display = 'block';
+                            }
+                        })
+                        .catch(function() {
+                            fallbackCopy(url, messageDiv);
+                        });
+                } else {
+                    fallbackCopy(url, messageDiv);
+                }
+            };
+
+            function fallbackCopy(url, messageDiv) {
+                var textarea = document.createElement('textarea');
+                textarea.value = url;
+                textarea.style.position = 'fixed';
+                textarea.style.opacity = '0';
+                document.body.appendChild(textarea);
+                textarea.focus();
+                textarea.select();
+
+                try {
+                    var success = document.execCommand('copy');
+                    if (success && messageDiv) {
+                        messageDiv.innerHTML = '¡Vínculo <strong>' + url + '</strong> copiado al portapapeles!';
+                        messageDiv.style.display = 'block';
+                    }
+                } catch(err) {
+                    // no-op
+
+                }
+
+                document.body.removeChild(textarea);
+            }
+
+            window.Share = function() {
+                var url = CONFIG.domain + "#ies/ies128";
+                var text = "Escuchá " + episodeTitle + " en Alterna Radio";
+
+                if (navigator.share) {
+                    navigator.share({
+                        title: episodeTitle,
+                        text: text,
+                        url: url
+                    })
+                    .catch(function() {
+                        Copy();
+                    });
+                } else {
+                    Copy();
+                    alert('Función de compartir no disponible. El vínculo ha sido copiado al portapapeles.');
+                }
+            };
+        })();
+    </script>
+    <script type="text/javascript">
+        if (typeof AudioManager !== 'undefined') {
+            AudioManager.pauseMainAudio();
+        }
+
+        document.addEventListener('play', function(e) {
+            if (e.target.tagName === 'AUDIO' && e.target.id !== 'main-audio') {
+                if (typeof AudioManager !== 'undefined') {
+                    AudioManager.pauseMainAudio();
+                }
+            }
+        }, true);
+    </script>
+</head>
+<body class="episode-page">
+
+<h2>Informe Económico Semanal 128 - Soberanía: del Paraná al río Bravo</h2>
+
+<audio controls autoplay>
+  <source src="../../archivo/informe_economico_semanal/ies128.ogg" type="audio/mpeg">
+</audio>
+
+<div id="copyMessage" class="copy-message" style="display:none;"></div>
+<div>
+    <button class="share-button" onclick="Share()">Compartir</button>
+</div>
+
+</body>
+</html>
+
